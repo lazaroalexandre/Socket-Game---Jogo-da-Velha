@@ -1,12 +1,9 @@
 import socket
-
-HOST = "localhost"
-PORT = 5051
-
+import Conexao
 
 class JogoVelha:
     
-    def __init__(self):
+    def __init__(self, host=Conexao.HOST, port= Conexao.PORT):
         self.tabela = [[" ", " ", " "],[" ", " ", " "],[" ", " ", " "]]
         self.inicializador = 'X'
         self.jogador = 'X'
@@ -14,22 +11,38 @@ class JogoVelha:
         self.vencedor = None
         self.fim_jogo = False
         self.contador = 0
-        
+        self.host = host
+        self.port = port
     
-    def conexao_jogo(self, host, port):
+
+    def criando_server(self):
+        
+        server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        server.bind((self.host, self.port))
+        print(f'SERVER CRIADO COM HOST E PORTA {self.host}/{self.port}\nAGUARDANDO O CLIENTE SE CONECTAR...')
+        server.listen(1)
+        
+        client, endereco = server.accept()
+        print(f"CONEXÃO SUCEDIDA PARA O CLIENTE COM PORTA E HOST {endereco[0]}/{endereco[1]}")
+        self.jogador = "X"
+        self.adversario = "O"
+
+        self.conexao_sucedida(client=client)
+        
+
+    def conexao_jogo(self):
         client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        client.connect((host, port))
-        print(f'SERVER CRIADO COM HOST E PORTA {host}/{port}\nAGUARDANDO O CLIENTE SE CONECTAR...')
+        client.connect((self.host, self.port))
+        print(f'SERVER CRIADO COM HOST E PORTA {self.host}/{self.port}\nAGUARDANDO O CLIENTE SE CONECTAR...')
         self.jogador = 'O'
         self.adversario = 'X'
         self.conexao_sucedida(client=client)
-        #threading.Thread(target=self.conexao_sucedida, args=(client,)).start()
            
         
     def conexao_sucedida(self, client):
         while not self.fim_jogo:
             if self.inicializador == self.jogador:
-                print("\n=O= MINHA VEZ DE JOGAR =O=\n")
+                print(f"\n={self.inicializador}= MINHA VEZ DE JOGAR ={self.inicializador}=\n")
                 posicao = input('Informe uma posição [LINHA, COLUNA]: ')
                 separacao = posicao.split(',')
                 
@@ -64,6 +77,7 @@ class JogoVelha:
         self.contador += 1
         self.tabela[int(posicao[0])][int(posicao[1])] = jogada
         self.mostrar_tabela()
+        print(self.contador)
         if self.checar_vencedor():
             if self.vencedor == self.jogador:
                 print("VOCÊ VENCEU!")
@@ -112,9 +126,3 @@ class JogoVelha:
                 print("-----------")
         print("\n")
                 
-                
-jogo = JogoVelha()
-jogo.conexao_jogo(HOST, PORT)
-
-
-
