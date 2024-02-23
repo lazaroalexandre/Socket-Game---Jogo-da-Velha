@@ -1,5 +1,4 @@
 import socket
-import threading
 HOST = "localhost"
 PORT = 5051
 
@@ -28,8 +27,7 @@ class JogoVelha:
             self.jogador = "X"
             self.adversario = "O"
 
-            threading.Thread(target=self.conexao_sucedida, args=(client,)).start()
-            
+            self.conexao_sucedida(client=client)
         
     
         
