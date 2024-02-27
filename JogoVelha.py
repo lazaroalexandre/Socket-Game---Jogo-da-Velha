@@ -3,7 +3,7 @@ import Conexao
 
 class JogoVelha:
     
-    def __init__(self, host=Conexao.HOST, port= Conexao.PORT):
+    def __init__(self):
         self.tabela = [[" ", " ", " "],[" ", " ", " "],[" ", " ", " "]]
         self.inicializador = 'X'
         self.jogador = 'X'
@@ -11,8 +11,8 @@ class JogoVelha:
         self.vencedor = None
         self.fim_jogo = False
         self.contador = 0
-        self.host = host
-        self.port = port
+        self.host = Conexao.HOST
+        self.port = Conexao.PORT
     
 
     def criando_server(self):
@@ -77,7 +77,6 @@ class JogoVelha:
         self.contador += 1
         self.tabela[int(posicao[0])][int(posicao[1])] = jogada
         self.mostrar_tabela()
-        print(self.contador)
         if self.checar_vencedor():
             if self.vencedor == self.jogador:
                 print("VOCÊ VENCEU!")
@@ -86,10 +85,10 @@ class JogoVelha:
                 print("VOCÊ PERDEU!")
                 exit()
             else:
-                print(self.contador)
                 if self.contador == 9:
-                    self.vencedor = "DEU VELHA!"
-                    
+                    self.vencedor = None
+                    print("DEU VELHA!")
+                    self.fim_jogo = True
                     exit()
     
     
@@ -115,6 +114,11 @@ class JogoVelha:
         if self.tabela[0][2] == self.tabela[1][1] == self.tabela[2][0] != " ":
             self.vencedor == self.tabela[0][2]
             self.fim_jogo = True
+        for linha in self.tabela:
+            for item in linha:
+                if item != " " and self.contador == 9:
+                    self.fim_jogo = True
+                    return True
         return False
     
     
