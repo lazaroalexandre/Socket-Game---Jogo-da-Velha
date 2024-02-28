@@ -85,11 +85,10 @@ class JogoVelha:
                 print("VOCÊ PERDEU!")
                 exit()
             else:
-                if self.contador == 9:
-                    self.vencedor = None
-                    print("DEU VELHA!")
-                    self.fim_jogo = True
-                    exit()
+                self.vencedor = None
+                print("DEU VELHA!")
+                self.fim_jogo = True
+                exit()
     
     
     def checar_posicao(self, posicao):
