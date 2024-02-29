@@ -33,7 +33,7 @@ class JogoVelha:
     def conexao_jogo(self):
         client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         client.connect((self.host, self.port))
-        print(f'SERVER CRIADO COM HOST E PORTA {self.host}/{self.port}\nAGUARDANDO O ADVERSÁRIO JOGAR...')
+        print(f'CONEXÃO CRIADA COM HOST E PORTA {self.host}/{self.port}\nAGUARDANDO O ADVERSÁRIO JOGAR...')
         self.jogador = 'O'
         self.adversario = 'X'
         self.conexao_sucedida(client=client)
