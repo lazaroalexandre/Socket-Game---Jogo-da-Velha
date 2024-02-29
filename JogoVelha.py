@@ -22,7 +22,10 @@ class JogoVelha:
         print(f'SERVER CRIADO COM HOST E PORTA {self.host}/{self.port}\nAGUARDANDO O ADVERSÁRIO SE CONECTAR...')
         server.listen(1)
         
-        client, endereco = server.accept()
+        tupla = server.accept()
+        client = tupla[0]
+        endereco = tupla[1]
+
         print(f"CONEXÃO SUCEDIDA PARA O CLIENTE COM PORTA E HOST {endereco[0]}/{endereco[1]}")
         self.jogador = "X"
         self.adversario = "O"
