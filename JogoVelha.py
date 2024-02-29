@@ -83,9 +83,7 @@ class JogoVelha:
                 print("VOCÊ PERDEU!")
                 exit()
             else:
-                self.vencedor = None
                 print("DEU VELHA!")
-                self.fim_jogo = True
                 exit()
     
     
