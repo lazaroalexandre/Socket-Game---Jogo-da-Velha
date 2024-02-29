@@ -115,7 +115,7 @@ class JogoVelha:
             self.fim_jogo = True
         for linha in self.tabela:
             for item in linha:
-                if item != " " and self.contador == 9:
+                if item != " " and self.contador == 9 and self.vencedor == None:
                     self.fim_jogo = True
                     return True
         return False
