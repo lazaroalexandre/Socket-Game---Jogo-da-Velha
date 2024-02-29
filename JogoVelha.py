@@ -98,25 +98,26 @@ class JogoVelha:
             if self.tabela[linha][0] ==  self.tabela[linha][1] == self.tabela[linha][2] != " ":
                 self.vencedor = self.tabela[linha][0]
                 self.fim_jogo = True
-                return True
+                return self.fim_jogo
         for coluna in range(3):
             if self.tabela[0][coluna] == self.tabela[1][coluna] == self.tabela[2][coluna] != " ":
                 self.vencedor = self.tabela[0][coluna]
                 self.fim_jogo = True
-                return True
+                return self.fim_jogo
         if self.tabela[0][0] == self.tabela[1][1] == self.tabela[2][2] != " ":
             self.vencedor = self.tabela[0][0]
             self.fim_jogo = True
-            return True
+            return self.fim_jogo
         if self.tabela[0][2] == self.tabela[1][1] == self.tabela[2][0] != " ":
             self.vencedor == self.tabela[0][2]
             self.fim_jogo = True
+            return self.fim_jogo
         for linha in self.tabela:
             for item in linha:
                 if item != " " and self.contador == 9 and self.vencedor == None:
                     self.fim_jogo = True
                     return True
-        return False
+        return self.fim_jogo
     
     
     def mostrar_tabela(self):
