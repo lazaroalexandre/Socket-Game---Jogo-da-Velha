@@ -72,8 +72,6 @@ class JogoVelha:
         
     
     def aplicar_posicao(self, posicao, jogada):
-        if self.fim_jogo:
-            return
         self.contador += 1
         self.tabela[int(posicao[0])][int(posicao[1])] = jogada
         self.mostrar_tabela()
