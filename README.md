@@ -24,7 +24,7 @@
         ipconfig
         ou
         ifconfig
-    - Copiar o ipv4 da máquina
+    - Copiar o ipv4 da rede
     - Colar no HOST em Conexao.py
     - Copiar o diretório Socket-Game---Jogo-da-Velha já modificado
     - Colar na outra máquina
