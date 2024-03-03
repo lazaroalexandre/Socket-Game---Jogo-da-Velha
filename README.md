@@ -17,7 +17,7 @@
 
     Caso você queira jogar com o outra pessoa em máquinas diferentes, mas na
     mesma rede, basta você copiar o ipv4 da máquina que será executada o Jogador.py
-    e subistitir na vareável HOST em Conexão.py.
+    e subistitir na variável HOST em Conexao.py.
 
     Exemplo:
     - Terminal:
